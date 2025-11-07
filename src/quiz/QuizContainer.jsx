@@ -4,7 +4,6 @@ import Scoreboard from "./Scoreboard";
 import Feedback from "./Feedback";
 
 export default function QuizContainer() {
-  // ✅ Full list of topics for algorithm visualizer + AI/ML
   const topics = [
     "Graphs",
     "BFS",
@@ -34,16 +33,18 @@ export default function QuizContainer() {
     "Neural Networks",
     "Supervised Learning",
     "Unsupervised Learning",
-    "Reinforcement Learning"
+    "Reinforcement Learning",
   ];
 
   const [topic, setTopic] = useState("graphs");
   const [questionData, setQuestionData] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
-
   const [score, setScore] = useState(0);
   const [attempts, setAttempts] = useState(0);
+
+  // 🌐 Dynamic API base (local or Render)
+  const API_BASE = import.meta.env.VITE_API_BASE || "http://127.0.0.1:5000";
 
   const generateQuestion = async () => {
     try {
@@ -65,7 +66,8 @@ Important: Randomly assign the correct answer to A, B, C, or D,
 and shuffle the other options so it is not always the same letter.
 Respond only with this format.`;
 
-      const response = await fetch("http://127.0.0.1:5000/", {
+      console.log("🌍 Fetching from:", `${API_BASE}/`);
+      const response = await fetch(`${API_BASE}/`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ message: prompt }),
