@@ -2,23 +2,23 @@
 import os
 import re
 import json
-from flask import Flask, request, jsonify
-from flask_cors import CORS
-from gemini_manager import DETECT_POOL, IR_POOL, ANIMATE_POOL
-from instrument_sort import translate_sort_from_code
-
-from instrument_master import translate_ir, resolve_parent_animator, merge_all_segments
 import tempfile
 import time
-from fallback_reconstruct import reconstruct_with_gemini, generate_animation_plan
-from instrument_graph import translate_graph_ir
-from complexity_checker import analyze_complexity
-
-import google.generativeai as genai
-from gemini_manager import DETECT_POOL, IR_POOL, ANIMATE_POOL, GeminiKeyManager
+from flask import Flask, request, jsonify
+from flask_cors import CORS
 import google.generativeai as genai
 
+# ✅ Corrected imports with backend prefix
+from backend.gemini_manager import DETECT_POOL, IR_POOL, ANIMATE_POOL, GeminiKeyManager
+from backend.instrument_sort import translate_sort_from_code
+from backend.instrument_master import translate_ir, resolve_parent_animator, merge_all_segments
+from backend.fallback_reconstruct import reconstruct_with_gemini, generate_animation_plan
+from backend.instrument_graph import translate_graph_ir
+from backend.complexity_checker import analyze_complexity
+
+# ✅ Initialize Gemini key manager
 gemini_keys = GeminiKeyManager()  # ✅ no arguments
+
 
 
 
