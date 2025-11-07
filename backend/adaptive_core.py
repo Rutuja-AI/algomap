@@ -11,7 +11,7 @@ import json
 import hashlib
 import difflib
 from datetime import datetime
-from gemini_manager import IR_POOL
+from backend.gemini_manager import IR_POOL
 
 # 🗂️ Adaptive memory folder
 ADAPTIVE_DIR = os.path.join(os.path.dirname(__file__), "adaptive_memory")

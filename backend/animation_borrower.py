@@ -4,7 +4,7 @@
 #  Purpose: Intelligently reuse existing animator types.
 # ==========================================================
 
-from instrument_master import resolve_parent_animator
+from backend.instrument_master import resolve_parent_animator
 
 def borrow_animation(concept: str, steps: list, meta: dict = None):
     """

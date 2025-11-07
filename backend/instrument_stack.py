@@ -1,7 +1,6 @@
 import re
 from typing import Any, Dict, List
-from adaptive_core import learn_missing_logic
-
+from backend.adaptive_core import learn_missing_logic
 
 def _make_step(action: str, line: int, description: str, stack: List[Any]) -> Dict[str, Any]:
     return {

@@ -7,7 +7,7 @@ import re
 from typing import Any, Dict, List
 
 try:
-    from app import trace
+    from backend.app import trace
 except ImportError:
     def trace(msg: str):  # fallback if run standalone
         print(f"🧭 [TRACE-local] {msg}")

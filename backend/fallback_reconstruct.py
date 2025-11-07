@@ -1,8 +1,8 @@
 import re
 import json
-from gemini_manager import IR_POOL
-from instrument_master import resolve_parent_animator
-from animate_manager import build_animation_plan  # ✅ unified animation planner
+from backend.gemini_manager import IR_POOL
+from backend.instrument_master import resolve_parent_animator
+from backend.animate_manager import build_animation_plan  # ✅ unified animation planner
 
 # -------------------------------------------------
 # 🧹 Safe JSON Parser

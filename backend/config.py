@@ -1,6 +1,6 @@
 # backend/config.py
 import json
-from gemini_manager import GeminiKeyManager
+from backend.gemini_manager import GeminiKeyManager
 
 # =========================================================
 # Gemini setup

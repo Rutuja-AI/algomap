@@ -14,7 +14,7 @@ from typing import Dict, Any, List
 # Safe trace import
 # ---------------------------
 try:
-    from app import trace
+    from backend.app import trace
 except ImportError:
     def trace(msg: str):
         print(msg)

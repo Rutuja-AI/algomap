@@ -1,8 +1,8 @@
 # backend/animate_manager.py
 import json
 import re
-from gemini_manager import ANIMATE_POOL
-from animator_dictionary import get_animator_vocab
+from backend.gemini_manager import ANIMATE_POOL
+from backend.animator_dictionary import get_animator_vocab
 
 
 def build_animation_plan(steps, concept="generic"):

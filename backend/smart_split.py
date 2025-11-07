@@ -17,7 +17,8 @@ What it provides
 
 Wiring later (example)
 ======================
-from smart_split import smart_split, translate_segments
+from backend.smart_split import smart_split, translate_segments
+from dataclasses import dataclass
 segs = smart_split(code, use_llm=True, llm_api_key=API_KEY)
 payload = translate_segments(
     segs,
@@ -32,7 +33,7 @@ payload = translate_segments(
     postprocess_queue_linear_fn=_guarantee_queue_linear_steps,  # from your app.py
 )
 """
-from gemini_manager import GeminiKeyManager
+from backend.gemini_manager import GeminiKeyManager
 
 manager = GeminiKeyManager()
 
