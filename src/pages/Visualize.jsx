@@ -35,13 +35,10 @@ import WeightedGraphAnimator from "../animators/graph/WeightedGraphAnimator";
 import { motion } from "framer-motion"; // ✅ make sure this is already imported at top
 // ---- Sorting ----
 import SortAnimator from "../animators/SortAnimator";
-
-const ANALYZE_URL =
-  import.meta.env.VITE_BACKEND_URL || "http://127.0.0.1:5000/translate_one";
-const TRANSLATE_SORT_CODE_URL =
-  import.meta.env.VITE_BACKEND_SORT_CODE_URL ||
-  "http://127.0.0.1:5000/translate_sort_code";
-
+const BASE_URL = "https://algomap.onrender.com";
+const ANALYZE_URL = `${BASE_URL}/translate_one`;
+const TRANSLATE_SORT_CODE_URL = `${BASE_URL}/translate_sort_code`;
+const CHECK_COMPLEXITY_URL = `${BASE_URL}/check_complexity`;
 export default function Visualize() {
   const [concept, setConcept] = useState("stack");
   const [replayToken, setReplayToken] = useState(Date.now());
@@ -69,9 +66,7 @@ export default function Visualize() {
   const [explanation, setExplanation] = useState("");
   const [selectedRating, setSelectedRating] = useState(0); // ⭐ add this line
   const [showQuiz, setShowQuiz] = useState(false);
-  const CHECK_COMPLEXITY_URL =
-    import.meta.env.VITE_BACKEND_COMPLEXITY_URL ||
-    "http://127.0.0.1:5000/check_complexity";
+
 
   // 🧠 Memoize meta
   const memoMeta = useMemo(
