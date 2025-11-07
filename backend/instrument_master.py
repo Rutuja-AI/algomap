@@ -5,16 +5,16 @@ import re
 from typing import Dict, Any
 
 # Import all translators
-from instrument_stack import translate_stack_ir
-from instrument_queue import translate_queue_ir
-from instrument_linkedlist import translate_linkedlist_ir
-from instrument_tree import translate_tree_ir
-from instrument_graph import translate_graph_ir
-from instrument_universal import translate_universal_ir
+from backend.instrument_stack import translate_stack_ir
+from backend.instrument_queue import translate_queue_ir
+from backend.instrument_linkedlist import translate_linkedlist_ir
+from backend.instrument_tree import translate_tree_ir
+from backend.instrument_graph import translate_graph_ir
+from backend.instrument_universal import translate_universal_ir
 
 # 🧭 Optional trace import
 try:
-    from app import trace
+    from backend.app import trace
 except ImportError:
     def trace(msg: str):
         print(f"🧭 [TRACE-local] {msg}")
@@ -142,7 +142,7 @@ def resolve_parent_animator(concept: str, meta: dict | None = None) -> str:
 # -------------------------------------------------
 # 🧠 Universal Gemini Refiner (Hybrid)
 # -------------------------------------------------
-from fallback_reconstruct import reconstruct_with_gemini
+from backend.fallback_reconstruct import reconstruct_with_gemini
 
 def _refine_with_gemini_if_needed(code: str, concept: str, res: dict) -> dict:
     """Hybrid-Refiner: send local IR to Gemini when it's weak or loop-heavy."""
@@ -376,7 +376,7 @@ def translate_ir(concept: str, code: str, skip_refine: bool = False) -> Dict[str
 
     # Sorting
     if "sort" in concept:
-        from instrument_sort import translate_sort_from_code
+        from backend.instrument_sort import translate_sort_from_code
         res = _ensure_dict(translate_sort_from_code(code), "sort")
         res["steps"] = _normalize_vars(res.get("steps", []))
         return _refine_with_gemini_if_needed(code, concept, res)
@@ -385,7 +385,7 @@ def translate_ir(concept: str, code: str, skip_refine: bool = False) -> Dict[str
     if not res or not res.get("steps"):
         trace(f"⚠️ [MASTER] No steps detected for concept='{concept}' → invoking Gemini IR fallback")
         try:
-            from fallback_reconstruct import reconstruct_ir
+            from backend.fallback_reconstruct import reconstruct_ir
             # 🚀 send existing meta + concept to Gemini for step reconstruction
             fallback_result = reconstruct_ir(code, concept=concept, local_ir=res)
 
