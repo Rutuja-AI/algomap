@@ -1,0 +1,32 @@
+{
+  "generic": [
+    "access_and_compare",
+    "advance_pointer",
+    "check_element",
+    "check_loop_condition",
+    "condition_false",
+    "condition_met",
+    "condition_not_met",
+    "condition_true",
+    "conditional_false",
+    "conditional_true",
+    "create",
+    "element_found_and_return",
+    "end",
+    "end_operation",
+    "end_program",
+    "highlight_line",
+    "increment_index",
+    "initialize_index",
+    "initialize_state",
+    "line_highlight",
+    "return",
+    "return_found",
+    "set_variable",
+    "start",
+    "start_loop",
+    "start_operation",
+    "start_search",
+    "update"
+  ]
+}

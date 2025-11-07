@@ -1,0 +1,30 @@
+{
+  "stack": {
+    "layout": "linear",
+    "base_animator": "StackAnimator"
+  },
+  "queue": {
+    "layout": "linear",
+    "base_animator": "QueueAnimator"
+  },
+  "tree": {
+    "layout": "tree",
+    "base_animator": "TreeAnimator"
+  },
+  "hash_table": {
+    "inherits_from": ["stack", "grid"],
+    "composition_rules": [
+      "use two parallel vertical columns — left for keys, right for values",
+      "connect each key to its value with arrows",
+      "show key–value pair only when insert() occurs",
+      "on search(), highlight matching key and value"
+    ]
+  },
+  "heap": {
+    "inherits_from": ["tree"],
+    "composition_rules": [
+      "draw a binary tree layout",
+      "swap parent and child during heapify steps"
+    ]
+  }
+}

@@ -1,0 +1,222 @@
+{
+  "segments": [
+    {
+      "idx": 1,
+      "concept": "sorting-quick",
+      "code": "# partition function\ndef partition(arr, low, high):\n    \n    # choose the pivot\n    pivot = arr[high]\n    \n    # index of smaller element and indicates \n    # the right position of pivot found so far\n    i = low - 1\n    \n    # traverse arr[low..high] and move all smaller\n    # elements to the left side. Elements from low to \n    # i are smaller after every iteration\n    for j in range(low, high):\n        if arr[j] < pivot:\n            i += 1\n            swap(arr, i, j)\n    \n    # move pivot after smaller elements and\n    # return its position\n    swap(arr, i + 1, high)\n    return i + 1\n\n# swap function\ndef swap(arr, i, j):\n    arr[i], arr[j] = arr[j], arr[i]\n\n# the QuickSort function implementation\ndef quickSort(arr, low, high):\n    if low < high:\n        \n        # pi is the partition return index of pivot\n        pi = partition(arr, low, high)\n        \n        # recursion calls for smaller elements\n        # and greater or equals elements\n        quickSort(arr, low, pi - 1)\n        quickSort(arr, pi + 1, high)\n\nif __name__ == \"__main__\":\n    arr = [10, 7, 8, 9, 1, 5]\n    n = len(arr)\n\n    quickSort(arr, 0, n - 1)\n    \n    for val in arr:\n        print(val, end=\" \")",
+      "steps": [
+        {
+          "action": "pivot",
+          "index": 5,
+          "description": "choose pivot a[5] = 5"
+        },
+        {
+          "action": "compare",
+          "i": 0,
+          "j": 5,
+          "description": "compare a[0] with pivot 5"
+        },
+        {
+          "action": "compare",
+          "i": 1,
+          "j": 5,
+          "description": "compare a[1] with pivot 5"
+        },
+        {
+          "action": "compare",
+          "i": 2,
+          "j": 5,
+          "description": "compare a[2] with pivot 5"
+        },
+        {
+          "action": "compare",
+          "i": 3,
+          "j": 5,
+          "description": "compare a[3] with pivot 5"
+        },
+        {
+          "action": "compare",
+          "i": 4,
+          "j": 5,
+          "description": "compare a[4] with pivot 5"
+        },
+        {
+          "action": "swap",
+          "i": 0,
+          "j": 4,
+          "description": "swap a[0] and a[4]"
+        },
+        {
+          "action": "set_array",
+          "array": [
+            1,
+            7,
+            8,
+            9,
+            10,
+            5
+          ],
+          "description": "array becomes [1, 7, 8, 9, 10, 5]"
+        },
+        {
+          "action": "swap",
+          "i": 1,
+          "j": 5,
+          "description": "place pivot at position 1"
+        },
+        {
+          "action": "set_array",
+          "array": [
+            1,
+            5,
+            8,
+            9,
+            10,
+            7
+          ],
+          "description": "array becomes [1, 5, 8, 9, 10, 7]"
+        },
+        {
+          "action": "pivot",
+          "index": 5,
+          "description": "choose pivot a[5] = 7"
+        },
+        {
+          "action": "compare",
+          "i": 2,
+          "j": 5,
+          "description": "compare a[2] with pivot 7"
+        },
+        {
+          "action": "compare",
+          "i": 3,
+          "j": 5,
+          "description": "compare a[3] with pivot 7"
+        },
+        {
+          "action": "compare",
+          "i": 4,
+          "j": 5,
+          "description": "compare a[4] with pivot 7"
+        },
+        {
+          "action": "swap",
+          "i": 2,
+          "j": 5,
+          "description": "place pivot at position 2"
+        },
+        {
+          "action": "set_array",
+          "array": [
+            1,
+            5,
+            7,
+            9,
+            10,
+            8
+          ],
+          "description": "array becomes [1, 5, 7, 9, 10, 8]"
+        },
+        {
+          "action": "pivot",
+          "index": 5,
+          "description": "choose pivot a[5] = 8"
+        },
+        {
+          "action": "compare",
+          "i": 3,
+          "j": 5,
+          "description": "compare a[3] with pivot 8"
+        },
+        {
+          "action": "compare",
+          "i": 4,
+          "j": 5,
+          "description": "compare a[4] with pivot 8"
+        },
+        {
+          "action": "swap",
+          "i": 3,
+          "j": 5,
+          "description": "place pivot at position 3"
+        },
+        {
+          "action": "set_array",
+          "array": [
+            1,
+            5,
+            7,
+            8,
+            10,
+            9
+          ],
+          "description": "array becomes [1, 5, 7, 8, 10, 9]"
+        },
+        {
+          "action": "pivot",
+          "index": 5,
+          "description": "choose pivot a[5] = 9"
+        },
+        {
+          "action": "compare",
+          "i": 4,
+          "j": 5,
+          "description": "compare a[4] with pivot 9"
+        },
+        {
+          "action": "swap",
+          "i": 4,
+          "j": 5,
+          "description": "place pivot at position 4"
+        },
+        {
+          "action": "set_array",
+          "array": [
+            1,
+            5,
+            7,
+            8,
+            9,
+            10
+          ],
+          "description": "array becomes [1, 5, 7, 8, 9, 10]"
+        },
+        {
+          "action": "mark_sorted",
+          "index": 0,
+          "description": "a[0] confirmed sorted"
+        },
+        {
+          "action": "mark_sorted",
+          "index": 1,
+          "description": "a[1] confirmed sorted"
+        },
+        {
+          "action": "mark_sorted",
+          "index": 2,
+          "description": "a[2] confirmed sorted"
+        },
+        {
+          "action": "mark_sorted",
+          "index": 3,
+          "description": "a[3] confirmed sorted"
+        },
+        {
+          "action": "mark_sorted",
+          "index": 4,
+          "description": "a[4] confirmed sorted"
+        },
+        {
+          "action": "mark_sorted",
+          "index": 5,
+          "description": "a[5] confirmed sorted"
+        }
+      ],
+      "meta": {
+        "n": 6,
+        "source": "code"
+      },
+      "step_count": 31
+    }
+  ]
+}
