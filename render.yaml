@@ -1,0 +1,12 @@
+services:
+  - type: web
+    name: algomap
+    env: python
+    buildCommand: |
+      pip install -r backend/requirements.txt
+      cd frontend && npm install && npm run build
+      cp -r frontend/dist backend/
+    startCommand: |
+      cd backend && python app.py
+    plan: free
+    autoDeploy: true
