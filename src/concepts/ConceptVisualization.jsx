@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom"; // ✅ use Link instead of <a>
 
 const TOPICS = [
   { name: "Data Structures", path: "/concepts/data-structures" },
@@ -14,35 +15,37 @@ export default function ConceptVisualization() {
 
   return (
     <div className="flex h-screen bg-gray-50 pt-10">
-      {/* Sidebar */}
+      {/* 📚 Sidebar */}
       <div className="w-64 bg-white p-6 border border-gray-300 rounded-lg shadow-lg m-4 flex-shrink-0">
         <h2 className="text-xl font-bold mb-4">Concepts</h2>
         <ul className="space-y-0">
           {TOPICS.map((topic, index) => (
             <li
               key={topic.name}
-              className={index !== TOPICS.length - 1 ? "border-b border-gray-300" : ""}
+              className={
+                index !== TOPICS.length - 1 ? "border-b border-gray-300" : ""
+              }
             >
-              <a
-                href={topic.path}
+              <Link
+                to={topic.path}
                 onMouseEnter={() => setHovered(topic.name)}
                 onMouseLeave={() => setHovered(null)}
                 className="block px-3 py-2 rounded hover:bg-emerald-600 hover:text-white transition"
               >
                 {topic.name}
-              </a>
+              </Link>
             </li>
           ))}
         </ul>
       </div>
 
-      {/* Center */}
+      {/* 🌟 Center Panel */}
       <div className="flex-1 flex items-center justify-center p-6">
         <motion.div
           key={hovered || "default"}
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.4 }}
+          transition={{ type: "spring", duration: 0.4 }}
           className="text-center max-w-md bg-white p-6 rounded-lg shadow-md border border-gray-200"
         >
           {hovered ? (
@@ -63,7 +66,7 @@ export default function ConceptVisualization() {
         </motion.div>
       </div>
 
-      {/* Right Panel */}
+      {/* 🧠 Right Info Panel */}
       <div className="w-72 bg-white p-6 border border-gray-300 rounded-lg shadow-lg m-4 flex-shrink-0">
         <h2 className="font-bold text-lg mb-2">How it works</h2>
         <p className="text-sm text-gray-600">
