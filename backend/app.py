@@ -7,6 +7,7 @@ import time
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 import google.generativeai as genai
+import requests
 
 # ✅ Corrected imports with backend prefix
 from backend.gemini_manager import DETECT_POOL, IR_POOL, ANIMATE_POOL, GeminiKeyManager
