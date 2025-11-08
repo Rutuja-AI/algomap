@@ -470,7 +470,23 @@ def translate_sort_code():
     return jsonify(payload), 200
 
 
+@app.post("/api/chat")
+def chatbot_proxy():
+    """
+    Secure backend proxy for AlgoBot chat requests.
+    Keeps the Gemini key hidden from the frontend.
+    """
+    try:
+        data = request.get_json(force=True)
+        # 🔹 get the first key from your GEMINI_KEYS list
+        api_key = os.getenv("GEMINI_KEYS", "").split(",")[0].strip()
+        url = f"https://generativelanguage.googleapis.com/v1/models/gemini-2.0-flash:generateContent?key={api_key}"
 
+        r = requests.post(url, headers={"Content-Type": "application/json"}, data=json.dumps(data))
+        return (r.text, r.status_code, {"Content-Type": "application/json"})
+    except Exception as e:
+        print("❌ [CHATBOT PROXY ERROR]", e)
+        return jsonify({"error": {"message": str(e)}}), 500
 # -------------------------------------------------
 # Ping
 # -------------------------------------------------
