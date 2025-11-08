@@ -23,7 +23,15 @@ gemini_keys = GeminiKeyManager()  # ✅ no arguments
 
 
 app = Flask(__name__)
-CORS(app, resources={r"/*": {"origins": "*"}}, supports_credentials=True)
+CORS(
+    app,
+    resources={r"/*": {"origins": [
+        "https://algomappppp.vercel.app",  # ✅ your deployed frontend
+        "http://localhost:5173"            # ✅ your local dev (optional)
+    ]}},
+    supports_credentials=True
+)
+
 # -------------------------------------------------
 # 🧠 CONCEPT DETECTION PROMPTS (legacy templates)
 # -------------------------------------------------
@@ -499,12 +507,6 @@ def home():
     return "AlgoMap Backend Live 🌟 (Smart Split OFF)"
 
 
-@app.after_request
-def add_cors_headers(resp):
-    resp.headers["Access-Control-Allow-Origin"] = "*"
-    resp.headers["Access-Control-Allow-Headers"] = "Content-Type, Authorization"
-    resp.headers["Access-Control-Allow-Methods"] = "GET, POST, OPTIONS"
-    return resp
 
 
 if __name__ == "__main__":
