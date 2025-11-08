@@ -196,13 +196,18 @@ Code:
                 meta.setdefault(k, v)
 
         before = len(steps)
-        if not local_ir and before > 15:
-            steps = compress_ir_minimal(steps, concept)
+        # 🚫 disable compression temporarily for testing matrix / unknown concepts
+        if concept.lower() in ["matrix", "matrices", "2d arrays", "2d array", "matrix operations", "unknown"]:
+            print(f"[REFINER] DEBUG: keeping all {before} steps (no compression for {concept}).")
         else:
-            print(f"[REFINER] Skipping compression ({before} steps).")
+            if not local_ir and before > 15:
+                steps = compress_ir_minimal(steps, concept)
+            else:
+                print(f"[REFINER] Skipping compression ({before} steps).")
 
         after = len(steps)
         print(f"[REFINER] Reduced {before} → {after} visible steps.")
+
         print(f"[RECONSTRUCT] ✅ Finalized {len(steps)} steps | Layout: {meta.get('layout')} | Theme: {meta.get('theme')}")
 
         # 🧩 Ensure meta consistency
